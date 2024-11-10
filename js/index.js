@@ -1,44 +1,67 @@
 //Операції:
-//операції для чисел
-let namber1 = 10; //перше присвоєння називається ініціалізацією
-namber1 = 0; //присвоєння
+//операції для рядків
+//Конкатинація: рядок + рядок = склеювання
+const greeting = 'You are ';
+const age = prompt('How old are you?');
+console.log(greeting+age+' yars old');
 
-//арифметичні
-let arithmetic1 = 1 + 2;
-console.log(arithmetic1);
+//Скороченні операції
+let sum1 = 5;
+// sum1 = sum1 + 5; довга версія 
+sum1 +=5;      //скорочена версія
+console.log(sum1);
 
-let arithmetic2 = 10 - 2;
-console.log(arithmetic2);
+let sum2 = 5;
+// sum2 = sum2 - 5; довга версія 
+sum2 -=5;      //скорочена версія
+console.log(sum2);
 
-let arithmetic3 = 2 * 2;
-console.log(arithmetic3);
+let sum3 = 5;
+// sum3 = sum3 * 5; довга версія 
+sum3 *=5;      //скорочена версія
+console.log(sum3);
 
-let arithmetic4 = 7 / 2;
-console.log(arithmetic4);
+let sum4 = 5;
+// sum4 = sum4 / 5; довга версія 
+sum4 /=5;      //скорочена версія
+console.log(sum4);
 
-//залишок від ділення
-let arithmetic5 = 7 % 2;
-console.log(arithmetic5); // = 1
+//Increament - додавання на 1; скорочена версія
+let sum5 = 5;
+// sum5 = sum5 + 1; довга версія 
+// sum5 +=1; довга версія 
+sum5++;      //скорочена версія
+console.log(sum5);
 
-//піднесення до степеня
-let arithmetic6 = 6**3; 
-console.log(arithmetic6); // 216
 
-//Math.(через консольку) - для інших нестандартних обчислень
-let arithmetic7 = (Math.sqrt(3)); 
-console.log(arithmetic7); 
+//Descreament  віднімання на 1; скорочена версія
+let sum6 = 5;
+// sum6 = sum6 - 1; довга версія 
+// sum6 -=1; довга версія 
+sum6--;      //скорочена версія
+console.log(sum6);
 
-let arithmetic8 = (Math.pow(4, 4)); 
-console.log(arithmetic8); 
 
-//Знайти довжину кола за радіусом: 2 * PI *r
-let r = 10;
-let arithmetic9 = 2 * Math.PI *r; 
-console.log(arithmetic9); 
+//приклад постфіксна форма +
+let x1 = 10;
+const y1 = x1++;
+console.log(y1);
+console.log(x1)
 
-//Одночасно дкілька обчислень
-let arithmetic10 = 2*2+3-5 ; 
-console.log(arithmetic10); 
+//приклад постфіксна форма -
+let x2 = 10;
+const y2 = x2--;
+console.log(y2);
+console.log(x2)
 
-let arithmetic11 = 2**3**2 ; 
-console.log(arithmetic11); 
+//приклад префіксна форма +
+let x3 = 10;
+const y3 = ++x3;
+console.log(y3);
+console.log(x3)
+
+//приклад префіксна форма -
+let x4 = 10;
+const y4 = --x4;
+console.log(y4);
+console.log(x4)
