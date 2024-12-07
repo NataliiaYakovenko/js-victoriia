@@ -1,112 +1,110 @@
-// Функція - Повторне використання коду
-//Одна функція, одна відповідальність
+// Способи задання функцій
 
-/*console.log('Hello');
-console.log('Hello');
-console.log('Hello');
-console.log('Hello');*/
-//_________________________________
-// Оголошення функції
+//1. Function Declaration - в перекладі оголошення функції
+
 // function ім'яФункції(параматр1, параметр2){
 //     тіло функції
 //     return значення
 //  }
-//  виклик функції
-//  ім'яФункції(р1, р2)
 
+//2. Function Expression - в перекладі вираз функції
+//колив функцію кладемо іншу функцію
 
-function myFumction(userName){
-    // в душках при оголошенні - параметри функції
-    //(нібито ви оголосили функцію let userName)
-    console.log(`Hello, ${userName}`);
-    console.log(1)
-    console.log(2)
-    console.log(3)
+// const назваФуекції = function ім'яФункції(параматр1, параметр2){
+//     тіло функції
+//     return значення
+//  }
+// console.log (назваФуекції(араматр1, параметр2));
+
+//в зміну кладемо функцію
+const calcSum = function sum(a,b){
+    return a + b;
 }
+console.log(calcSum(4,5));
 
-myFumction('Nataliia');// - в душках при виклику аргумент
-myFumction('Roland');
+//Переписати функцію для піднесення числа до степеня 
+//в формі Function Expression
 
-const a = myFumction('Ivo');
-console.log('a :>>', a);
-//____________________________
-
-function myFumction(userName){
-    const userGreeting = `Hello, ${userName}`
-    return userGreeting;
+const raisingNumberToPower = function numbers(x,y){
+    return x**y;
 }
-const userName = myFumction('Lidiia');
-console.log('UserName :>>', userName);
-//__________________________________
+console.log(raisingNumberToPower(2,2));
+//____________________________________________
 
-//Написати функцію для обчислення двох чисел
-//debugger
-function sum(paramtr1, paramtr2){
-    const summa = paramtr1 + paramtr2;
-    return summa;
-}
+//Відмінності
 
-const result = sum(4,5);
-console.log(result);
-//___________________________________
-
-//Написати функцію, яка приймає два параметри a, b, і повертає a**b
-// 2**2 = 4
-// 3**3 = 27
+//Function Declaration порядок оголошення неважливий
+console.log(summa1(3,2));
 
 function summa1(num1,num2){
     return num1**num2;
 }
-const result1 = summa1(2,2)
-console.log(result1);
-//___________________________________
 
-//Написати суму для обчислення цілих чисел від n1 до n2
-// 1.5 = 1+2+3+4+5 = 15
-//Варіант 1
-function summaEromN1ToN2(n1,n2){
-    let sum = 0;
-  for(let i = n1; i <= n2; i++){
-     sum = sum+i;
-  }
-  return sum;
+//Function Expression порядок оголошення важливий
+// оголошення після створення функції
+// томущо js бачить функцію як змінну
+const raisingNumberToPower1 = function numbers(x,y){
+    return x**y;
 }
-const result2 = summaEromN1ToN2(1,5);
-console.log(result2);
-
-//Варіант 2
-function summaEromN1ToN2(n1,n2){
-    let sum = 0;
-  for(let i = n1; i <= n2; i++){
-     sum = sum+i;
-  }
-  return sum;
-}
-console.log('summaEromN1ToN2(7,10)', summaEromN1ToN2(7,10));
+console.log(raisingNumberToPower1(4,2));
 //____________________________________________
 
-// Написати функцію, яка приймає вік користувача
-// Повертає true до повнолітнього користувача
-// Повертає fals до неповнолітнього користувача
+//Дефолтні значення або значення за умовченням
+//В цій функції можна вказати декілька параметрів
+const value = prompt('Input number', 10);
+console.log(value);
 
-//Варіант1
-function isAge(userAge){
-   if(userAge >= 18){
-      console.log(true)
-   }else{
-    console.log(false);
-   }
-}
-isAge(21);
+//Задача.
+//Знайти суму двох чисел, якщо друге число не передане, то вважати його 1
 
-//Варіант2
-function isAge1(userAge){
-    return userAge >= 18? true:false;
+function sumTwoNumbers(a,b=1){// значення за умовченням повинні бути ОСТАННІ
+return a + b;
 }
-console.log(isAge1(7));
+console.log(sumTwoNumbers(3,3));
+console.log(sumTwoNumbers(3));
 
-//Варіант3
-function isAdult(age){
-    return age >= 18;
+//Задача.
+//Якщо користувач передає тільки один параметр то це має бути to
+function summaEromN1ToN2(to,from=1){
+    let sum = 0;
+  for(let i = to; i <= from; i++){
+     sum = sum+i;
+  }
+  return sum;
 }
-console.log(isAdult(99));
+let sumTo = sumTwoNumbers(10,-10);
+console.log(sumTo);
+let sumTo1 = sumTwoNumbers(10);
+console.log(sumTo1);
+//__________________________________________
+
+// jsDoc
+/**
+ * Функція обчислює суму двох чисел
+ * @param {число} a - перше число
+ * @param {число} [b=1] - друге число
+ * @returns {число} - повертає суму двох чисел
+ */
+function sumTwoNumbers(a,b=1){
+    return a + b;
+    }
+    console.log(sumTwoNumbers(3,3));
+    console.log(sumTwoNumbers(3));
+
+/**
+ * Функція обчислює суму двох чисел
+ * @param {число} to - перше число
+ * @param {число} [from=1]  - друге число
+ * @returns {число} - повертає суму двох чисел
+ */  
+    function summaFromN1ToN2(to,from=1){
+        let sum = 0;
+      for(let i = to; i <= from; i++){
+         sum = sum+i;
+      }
+      return sum;
+    }
+    let sumTo2 = summaFromN1ToN2(10,-10);
+    console.log(sumTo);
+    let sumTo3 = summaFromN1ToN2(10);
+    console.log(sumTo1);
