@@ -1,120 +1,95 @@
-//Об'єкт - це крнтейнер для інформації
 
-const obj1 = { //синтаксичний цукор
-};
-const obj2 = Object();
-const obj3 = new Object(); //функція-конструктор
-
-console.log(obj1);
-//alert - не підтримує виведення об'єктів
-//________________________________________
-
-//Ініціалізація об'єктів
-/*const user = {
-//key,value   властивості розділяються комами
+//Методи об'єктів
+const user = {
 firstName: 'Nataliia',
 lastName: 'Yakovenko',
 age: 41,
-};
+password: 'qwerty',
+//методи
+//повна версія
+getFullName: function(){
+    //контекст (посилання на об'єктб, для якого викликано метод, він перед крапкою при виклику)
+    return `${this.firstName} ${this.lastName}`;
+//метод, що перевизначає пароль
+},
+changePassword: function(newPassword){
+    this.password = newPassword;
+},
+
+//Скорочена версія
+getFullName(){
+    return `${this.firstName} ${this.lastName}`;
+},
+changePassword(newPassword){
+    this.password = newPassword;
+},
+}
+console.log(user.getFullName());
+
+user.changePassword = ('123456');
 console.log(user);
-//_________________________________________
 
-//Доступ до властивостей - це операція крапка .
-console.log(user.firstName);
-
-//Змінити властивості
-user.age = 42;
-console.log(user.age);
-
-//Додавання властивостей
-user.email = 'yakovenkonatali999@gmail.com'
-console.log(user.email);
-
-//Видалення властивостей
-delete user.age;
-console.log(user);
-//____________________________________________
-
-//Задача
-/*Створити об'єкт авто (марка., модель, рік випуску, реєстраційний номер, колір)
-Переглянути об'єкт (вивести в консоль)
-Змінити колір
-Видалити властивість рік випуску
-Додати властивість ім'я, прізвище власника
-Преглянути об'єкт (вивести в консоль)
- */
-/*const avto = {
-     brand: 'Audi',
-     model: 'Q10',
-     year: 2024,
-     number:'AP1410RA',
-     color: 'red',
-};
-console.log(avto);
-
-delete avto.year;
-avto.color = 'gold'
-avto.nameOvner = 'Nataliia';
-avto.surnameOvner = 'Yakovenko';
-console.log(avto);*/
-//_________________________________________
-
-
-//Типи значення (примітиви) і посилальні типи (типи посилання)
-const number1 = 5;
-const number2 = 5;
-console.log(number1===number2);
-//--------------------------------
-
-const object1 = {};
-const object2 = {};
-console.log(object1===object2);
-//-------------------------------
-
-const user = {
-    firstName: 'Nataliia',
-    lastName: 'Yakovenko',
-    age: 41,
-    };
-    console.log(user);
-
- const user1 = user;
- user1.firstName = 'Nata jan';
- console.log(user1);
- console.log(user);
- console.log(user===user1);
- //______________________________
-
- //Копіювання об'єктів
- //Варіант1
- const user2 = Object.assign({},user);
- console.log(user2);
- console.log(user2===user);
- 
- //Варіант2
- const user3 = {...user};
- console.log(user3);
- console.log(user3===user);
- //--------------------------------
- 
- //Задача.Зробіть копію авто двома підходами
- const avto = {
+//Змінити колір авто методом
+const avto = {
     brand: 'Audi',
     model: 'Q10',
     year: 2024,
     number:'AP1410RA',
     color: 'red',
+    changeColorAvto(newColorAvto){
+       this.color = newColorAvto;
+    }
 };
+avto.changeColorAvto('yellow');
+console.log(avto.color);
 console.log(avto);
 
-//Варіант1
-const avto1 = Object.assign({},avto);
-avto1.color = 'green';
-console.log(avto1);
-console.log(avto1===avto);
+//Перебір об'єктів for...in
+//user
+for(key in user){
+    console.log(key);
+};
+for(let key in user){
+    console.log(key , user[key]);
+};
 
-//Варіант2
-const avto2 = {...avto};
-avto2.year = 2022;
-console.log(avto2);
-console.log(avto2===avto);
+//avto
+for(key in avto){
+    console.log(key);
+};
+for(let key in avto){
+    console.log(key,avto[key]);
+}
+//Варіант з шаблоним літералом
+for(let key in avto){
+    console.log(`${key} = ${avto[key]}`);
+}
+
+//-----------------------------
+
+//СИНТАКС ОБСИЛЮВАНИХ ВЛАСТИВОСТЕЙ
+const properti = 'firstName';
+console.log(user[properti]);
+
+const userProp = prompt('Input properti');
+console.log(user[userProp]);
+//_____________________________________
+
+//Перевірка типів
+console.dir(user);
+console.dir(avto);
+console.dir(function f(){});
+//----------------------------------
+
+//Що можна вважати властивостями об'єкта
+//Вкладені об'єкти
+const human = {
+    name: 'Rol',
+    physicalParameters: {
+        haight: 1.7,
+        weight: 75,
+    },
+}
+console.log(human);
+console.log(human.physicalParameters);
+console.log(human.physicalParameters.haight);
