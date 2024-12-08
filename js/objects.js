@@ -1,95 +1,58 @@
+// ФУНКЦІЇ - КОНСТРУКТОРИ
+//Записується з великої літери
+//Додається new
 
-//Методи об'єктів
-const user = {
-firstName: 'Nataliia',
-lastName: 'Yakovenko',
-age: 41,
-password: 'qwerty',
-//методи
-//повна версія
-getFullName: function(){
-    //контекст (посилання на об'єктб, для якого викликано метод, він перед крапкою при виклику)
-    return `${this.firstName} ${this.lastName}`;
-//метод, що перевизначає пароль
-},
-changePassword: function(newPassword){
-    this.password = newPassword;
-},
-
-//Скорочена версія
-getFullName(){
-    return `${this.firstName} ${this.lastName}`;
-},
-changePassword(newPassword){
-    this.password = newPassword;
-},
-}
-console.log(user.getFullName());
-
-user.changePassword = ('123456');
-console.log(user);
-
-//Змінити колір авто методом
-const avto = {
-    brand: 'Audi',
-    model: 'Q10',
-    year: 2024,
-    number:'AP1410RA',
-    color: 'red',
-    changeColorAvto(newColorAvto){
-       this.color = newColorAvto;
-    }
+function User(firstName, lastName, age, password){
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.age = age;
+  this.password = password;
+  this.makeOlder = function() {
+    this.age++;
+  };
 };
-avto.changeColorAvto('yellow');
-console.log(avto.color);
-console.log(avto);
+//Статичні властивості
+User.AVG_AGE =85;
+console.log(User.AVG_AGE);
 
-//Перебір об'єктів for...in
-//user
-for(key in user){
-    console.log(key);
+//Прототипи об'єктів
+//Методи прототипа
+const userProto = {};
+userProto.changePassword = function(newPassword){
+this.password = newPassword;
 };
-for(let key in user){
-    console.log(key , user[key]);
+User.prototype = userProto;
+
+const userProto1 = {};
+userProto1.makeOlder = function() {
+    this.age++;
 };
+User.prototype = userProto1;
 
-//avto
-for(key in avto){
-    console.log(key);
+//Додаємо декілько useriv
+const user1 = new User('Nataliia', 'Yakovenko', 41, 'qwerty');
+console.log(user1);
+user1.makeOlder();
+console.log(user1);
+
+const user2 = new User('Roland', 'Simonyan', 26, '12345');
+console.log(user2);
+user2.makeOlder();
+console.log(user2);
+
+const user3 = new User('Abu-Dabi', 'Dubai', 20, 'paradise');
+console.log(user3);
+user3.makeOlder();
+console.log(user3);
+//------------------------------------------------------------
+
+//Перевірка типу об'єкта
+console.log(user1 instanceof User);
+
+//Часто використовуються
+if(user1 instanceof User){
+    console.log('user1 is User');
+} else{
+    console.log('user1 is not User');
 };
-for(let key in avto){
-    console.log(key,avto[key]);
-}
-//Варіант з шаблоним літералом
-for(let key in avto){
-    console.log(`${key} = ${avto[key]}`);
-}
-
-//-----------------------------
-
-//СИНТАКС ОБСИЛЮВАНИХ ВЛАСТИВОСТЕЙ
-const properti = 'firstName';
-console.log(user[properti]);
-
-const userProp = prompt('Input properti');
-console.log(user[userProp]);
-//_____________________________________
-
-//Перевірка типів
-console.dir(user);
-console.dir(avto);
-console.dir(function f(){});
-//----------------------------------
-
-//Що можна вважати властивостями об'єкта
-//Вкладені об'єкти
-const human = {
-    name: 'Rol',
-    physicalParameters: {
-        haight: 1.7,
-        weight: 75,
-    },
-}
-console.log(human);
-console.log(human.physicalParameters);
-console.log(human.physicalParameters.haight);
+//-------------------------------------------------------------
