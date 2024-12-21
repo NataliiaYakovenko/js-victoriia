@@ -1,25 +1,28 @@
-// document.write  - написати розмітку на сторінці
-document.write('<h1>Users list</h1>')
-//-----------------------------------------------------------------
-//вивести місяці на сторінку
-const months =['January','February','March']
-document.write('<h1>Months list</h1>')
+// array - задачі
 
-document.write('<ul>')
-for(let i = 0; i < months.length;i ++){
-document.write(`<li>${months[i]}</li>`)
+// Задати масив з довільних чисел і вивести 
+const numbers = [1,2,3,4,5,6,7,8,9]
+for(let i = 0; i < numbers.length; i++){
+  console.log(numbers[i]);
 }
-document.write('</ul>')
-//------------------------------------------------------------------
-//вивести користувачів на сторінку
-const users =[
-  {id: 1, name:'Test'},
-  {id: 2, name:'Ivo'}
-];
-document.write('<h1>Users list</h1>');
-document.write('<ul>');
-for(let g = 0; g < users.length;g++){
-  //виводимо кожен окремо елемент об'єкта, який є в масиві
-  document.write(`<li>${users[g].id} ${users[g].name}</li>`)
+//--------------------------------------------------------------------
+// Задати масив з довільних чисел і вивести тільки додатні
+const numbers1 = [1,-2,3,-40,5,6,-75,8,9]
+let result = 0;
+for(let i = 0; i < numbers1.length; i++){
+  if(numbers1[i] > 0){
+    //result +=1;   //виведе кількість додатніх чисел - 6
+    console.log(numbers1[i]) // виведе кожен елемент окремо - 1,3,5,6,8,9,
+  }
 }
-document.write('</ul>');
+//---------------------------------------------------------------------
+//Задача. Написати функцію для підрахунку суми елементів масиву
+const numbers2 = [2,2,2,2,2,2,2,2,2]
+function summaValues(numbers2){
+  let result = 0;
+  for(let i = 0; i < numbers2.length; i++){
+    result += numbers2[i];// додаємо значення елемента масиву до результату
+  }
+  return result;// повертаємо суму
+}
+console.log(summaValues(numbers2)); // Виведе суму елементів масиву
