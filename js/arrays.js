@@ -1,4 +1,4 @@
-// array - задачі
+// array - задачі затосувати for...in, for...of
 
 // Задати масив з довільних чисел і вивести 
 const numbers = [1,2,3,4,5,6,7,8,9]
@@ -26,3 +26,28 @@ function summaValues(numbers2){
   return result;// повертаємо суму
 }
 console.log(summaValues(numbers2)); // Виведе суму елементів масиву
+//----------------------------------------------------------------------
+//Перебір елементів спеціалізовними циклами for...in - перебирає ключі
+for(const index in numbers2){
+  console.log(index,numbers2[index]);
+}
+//---------------------------------------------------------------------
+//for...of - перебирає самі елементи
+const months =['January','February','March']
+for(const item of months){
+  console.log(item);
+}
+
+const numbers3 = [1,-2,3,-40,5,6,-75,8,9]
+for(const item of numbers3){
+  console.log(item);
+}
+
+// вивести тільки імена
+const users =[
+  {id: 1, name:'Test'},
+  {id: 2, name:'Ivo'}
+];
+for(const item of users){
+  console.log(item.name)
+}
