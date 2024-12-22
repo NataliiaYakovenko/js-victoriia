@@ -1,61 +1,43 @@
-//Методи перебору масивів
-//Callback - це функція, яка передається до іншої функції і виконується в ній
-function functionWithCallback(cd,value){
-    cd(value)
+//Методи фільтрації масивів
+
+//array.filter - використовується для створення нового масиву, який містить лише ті елементи, які задовільняють певній умові (не мутуючий)
+//array.filter(callback)
+//callback буде викликатись для кожного елементу масиву, і ця callback функція в середині фільтру вона повинна повертати або true/false для кожного елементу масиву
+
+//Потрібно відфільтрувати тільки непарні числа
+const array1 = [1,5,-10,16,0,9]
+
+function IsNumberOdd(item){
+    return item % 2 === 1 ? true : false;
+ //якщо елемент ділиться на 2 і = 1 то буде true, в іншому випадку буде false 
 }
-//functionWithCallback(alert,'Hello')
-functionWithCallback(console.log,'Hello from console');
+const newArray1 = array1.filter(IsNumberOdd)
+console.log(newArray1)
+
+//Потрібно відфільтрувати повнолітніх
+const users =[
+    {id: 1, name:'Test', age: 15},
+    {id: 2, name:'Ivo', age: 21}
+  ];
+  function isAdultUsers(user){
+    return user.age >= 18 ? true : false;
+ 
+}
+const newUsers = users.filter(isAdultUsers)
+console.log(newUsers)
 //-------------------------------------------------------------------------------
 
-//array.forEach - використовується для перебору (ітерації) кожного елемента масиву і виконання певної дії для виконання кожного елемента
-//array.forEach(callback) - викликає функцію зворотнього виклику
-//Callback - це функція, яка передається до іншої функції і виконується в ній
-//Застосування Callback 
-const array1 = [1,2,3,4,5,6,]
+//array.findeIndex - використовується для повернення індексу в масиві
+//якщо даний індекс є в масиві тоді повертається індекс true,
+//якщо потрібний індекс відсутній, тоді повертається -1
+//array.findeIndex(callback) - викликає функцію зворотнього виклику
 
-function printItem(item, index, array){
-console.log(`Item ${index} = ${item}`);
-console.log(array);
+
+//Потрібно знайти індекс елемента 16
+const array2 = [1,5,-10,16,0,9]
+
+function getIndex(item){
+return item === 16;
 }
-array1.forEach(printItem)
-
-//зробити теж саме через цикл for
-for(let i = 0;i < array1.length;i++){
-    printItem(array1[i], i, array1)
-}
-//----------------------------------------------------------------------------
-
-//array.map - працює як forEach (викликає функцію зворотнього виклику), 
-//тільки map буде повертати(створювати) новий масив  (немутуючий)
-
-//Згенерувати масив в квадраті
-const array2 = [1,2,3,4,5,6,]
-
-function toSquer(item){
-return item**2;
-}
-
-const newArray2 = array2.map(toSquer)
-console.log(newArray2)
-
-
-//Отимати елементи з вихідного, змінивши знаки елементами
-const array3 = [1,2,3,4,5,6,]
-
-function changingSignsElements(item){
-return -item;//змінивши знаки -1, -2, -3, -4, -5, -6
-}
-const newArray3 = array3.map(changingSignsElements)
-console.log(newArray3)
-
-
-//Отримати масив з іменами користувачів
-const users =[
-    {id: 1, name:'Test'},
-    {id: 2, name:'Ivo'}
-  ];
-  function getName(user){
-    return user.name;
-  }
-const name = users.map(getName)
-console.log(name);
+const index = array2.findIndex(getIndex)
+console.log(index);
