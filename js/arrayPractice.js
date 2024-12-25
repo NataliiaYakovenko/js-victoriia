@@ -155,7 +155,7 @@ const c = phones.map((item) => {
 console.table(c);
 //------------------------------------------------------------------------
 
-// Вивести бренд-модель телефонів із nfc
+// 6. Вивести бренд-модель телефонів із nfc
 //варіант1
 const phoneWithNfc = phones.filter(item => item.isNfc); 
 phoneWithNfc.forEach((item) =>
@@ -173,7 +173,7 @@ phones
       `'brand': ${item.brand}, 'model': ${item.model}, 'year': ${item.year}`
     )
   );
-
+//--------------------------------------------------------------------------
 //7. Вивести данні про моделі Redmi 2023
 //every, some
 //8. Перевірити чи є золоті телефони
