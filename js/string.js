@@ -1,6 +1,7 @@
 //string (рядки) - це псевдомасиви
 
 const string = 'Nataliia'
+
 console.log(string.length);
 console.log(string[3])// виводжу букву через елемент
 
