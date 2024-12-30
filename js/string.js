@@ -1,41 +1,90 @@
-//string (рядки) - це псевдомасиви
+//Лексичне оточення. Замикання
 
-const string = 'Nataliia'
+//Scope- область видимост
+/*Змінні, які оголошені поза будь-яким блоком - називаються глобальні,
+видновсім блокам ( Scope - Script)
 
-console.log(string.length);
-console.log(string[3])// виводжу букву через елемент
-
-//РЯДКИ НЕ МОЖНА ЗМІНЮВАТИ
-string[4] = 'L';  //НЕ ПРАВИЛЬНО
-console.log(string);
-
-const string1 = string.slice(3,8)
-console.log(string1)
-
-
-//методи string
-//'Nataliia'.startWith('Nat') - перевірити з чого починається рядок
-//'Nataliia'.endWith('ia') - перевірити чим закінчується рядок
-//'Nataliia'.includes('t') - перевірити чи взагалі існує така літера в рядку, неважливо де вона вказана
-//'Nataliia'.toLowerCase() -'nataliia'
-//'Nataliia'.toUpperCase() - 'NATALIIA'
-//--------------------------------------------------------------------
-//Задача
-//Написати функцію, яка за рядком 'Nataliia Yakovenko' 
-//зформує рядок з ініціалами 'NY'
-
-function getInitials(name){
-    //знайти пробіл
-    const spaceIndex = name.indexOf(' '); //шукає під яким індексом пробіл
-    console.log(spaceIndex); //індекс пробілу
-    //return 1й символ + символ після пробілу
-    return name[0] + name.slice(spaceIndex+1,spaceIndex+2)
-//name[0] - 1 перша літера в першому слові
-//spaceIndex+1 - 1 літера після пробілу, з якої починається slice
-//spaceIndex+2 - 2 літера після пробілу, з якої починається slice
-
+  Змінні, які оголошені у середині блоку, тобто у {блок} - докальні, 
+тобто видні тільки в середині {блоку}  ( Scope - Block/Local)
+ */
+const glbalVar = 'global';
+if(true){
+    const localVarInIIf = 'local in I if';
+    if(true){
+        const localVarInIIf2 = 'local in I if';
+        
+      
+            console.log(glbalVar);
+            console.log(localVarInIIf);
+            console.log(localVarInIIf2);
+    }
 }
 
+// Lexical Environment - лексичне оточення
+/*const a = 'global';
+function f1(){
+    const a = 'local';
+    f2()
+}
+function f2(){
+    console.log(a) 
+}
+f1()
 
-const initials = getInitials('Nataliia Yakovenko')
-console.log(initials)
+
+const a = 'global';
+function f1(){
+    function f2(){
+        console.log(a)
+        
+    }
+    const a = 'local';
+    f2()
+}
+
+f1()
+*/
+
+
+/*Closure - замикання - це комбинація функції та лексичного оточення,
+ в якому ця функція була визначена
+
+ У Closure в Scope - локальні змінні функції, в середині якої функція, 
+ що виконується була створена
+ */
+
+const a = 'global';
+function f1(){
+    const a = 'local';
+
+    const f2 = function (){
+        console.log(a) 
+    }
+    console.log(f2);
+return f2
+}
+const f2FromF1 = f1();
+f2FromF1()
+
+//Приклад
+function counter (){
+    let i=0;
+    return function(){
+        return ++i;
+    }
+}
+const counter1 = counter()
+console.log(counter1());
+console.log(counter1());
+console.log(counter1());
+console.log(counter1());
+console.log(counter1());
+console.log(counter1());
+console.log(counter1());
+
+const counter2 = counter()
+console.log(counter2());
+console.log(counter2());
+console.log(counter2());
+console.log(counter2());
+console.log(counter2());
