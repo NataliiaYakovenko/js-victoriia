@@ -1,31 +1,51 @@
-// Рекурсія
-//3**4 = 3*3**3 =3*3*3**2
-//Число в степені 0 = 1   (3**0 = 1 )
-
-//4! =1*2*3*4 - факторіал
-//0! = 1   
-//4! = 4*3!= 4*3*2! = 4*3*2*1! = 4*3*2*1*0!  0! = 1  
-let i = 0;
-function getFactorial(n){
-    if(n===0){
-        return 1;
-    }
- return n * getFactorial(n-1)//це є 4*3!
+/*try{
+ - код, який потенційно може викликати помилки
 }
-console.log(getFactorial(4))
+catch(err){
+ - блок куди буде передане керування, якщо виникла помилка
+ або згенерувалась в ручну в throw
+console.log(err);
+}*/
 
-//Рекурсія обов'язково потрібна містити перевірку if
-//-----------------------------------------------------------------------
-
-// Вивести в консоль для bracketSteq(2)=>(())
-//                       bracketSteq(4)=>(((())))
-
-function bracketSteq(n){
-    if(n===0){
-        return ;
-    }
-    console.log('(');
-    bracketSteq(n-1)
-    console.log(')');
+const a =10;
+console.log(a);
+try{
+    const c = a+b; // код з потенційною помилкою
 }
-bracketSteq(4)
+catch(err){
+console.log(err);
+}
+
+console.log('hello');
+console.log('hello');
+console.log('hello');
+//------------------------------------------------
+
+/*throw new Error('text')
+console.log('hello');*/
+//-----------------------------------------------
+//Задача
+//Написати функцію для обчислення факторіала.
+//Передбачити, щоб можна було обчислювати !
+//тільки number, прицьому цілі додатні значення
+
+function factorial(n){
+    if(typeof n !== "number"){
+        throw new Error('n must be number')
+    }
+  if(n<0 || Number.isSafeInteger(n)){  // Безпечне ціле число
+        throw new RangeError('n must be not negative and integer value')
+  }
+ if(n === 0){
+    return 1;
+ }
+ return n*factorial(n-1)
+
+}
+try{
+    console.log(factorial(-5));
+}catch(error){
+    console.log(err);
+}
+
+console.log('hello');
