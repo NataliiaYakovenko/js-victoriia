@@ -111,3 +111,27 @@ console.log(phone1.getAgePhone())
 
 console.log(phone2);
 console.log(phone2.getAgePhone())
+//-------------------------------------------------------------------
+
+//Три кити ООП(об'єктно орієнтоване програмування)
+
+//Інкапсуляція - приховання логіки (особливостей реалізації)
+class User5{
+    constructor(fulname){
+   [this._firstname, this._lastname]=fulname.split(' ')
+    }
+    set fulname(v){
+        [this._firstname, this._lastname]=v.split(' ')
+    }
+    get fulname(){
+        return this._firstname + ' ' + this._lastname;
+    }
+   
+}
+const user1 = new User5('Nataliia','Yakovenko')
+user1.fulname='Nataliia Yakovenko'
+console.log(user1.fulname);
+//Спадкування - 
+
+//Поліморфізм -
+
