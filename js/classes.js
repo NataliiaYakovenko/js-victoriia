@@ -198,29 +198,28 @@ class Admin extends Moderator {
     super(firstname, lastname, age, isMale, email, premissions);
     this._category = category;
   }
-  bann(person){
+  bann(person) {
     person._isBanned = true;
-   //console.log(`Admin ${this._firstname} banned user ${person._firstname}`);
+    //console.log(`Admin ${this._firstname} banned user ${person._firstname}`);
   }
 
-  unbann(person){
+  unbann(person) {
     person._isBanned = false;
-   //console.log(`Admin ${this._firstname} did not bann user ${person}`);
+    //console.log(`Admin ${this._firstname} did not bann user ${person}`);
   }
 }
 const admin = new Admin("Jon", "Black", 66, true, "black@gmail.com", {
-  banned: true
+  banned: true,
 });
 
 console.log(admin);
-console.log(admin.getFullName())
-admin.sendMessage(person,'Goodbay')
-console.log(person._isBanned)
-admin.bann(person)
-console.log(person._isBanned)
-admin.unbann(person)
-console.log(person._isBanned)
-
+console.log(admin.getFullName());
+admin.sendMessage(person, "Goodbay");
+console.log(person._isBanned);
+admin.bann(person);
+console.log(person._isBanned);
+admin.unbann(person);
+console.log(person._isBanned);
 
 //Класи перепризначення методів
 /*
@@ -275,24 +274,68 @@ class FlaingSquirrel extends Squirrel {
   runing() {
     console.log(`Flaing squirrel ${this._nickname} cannot run.`);
   }
-  
-  flaing(){
-    console.log(`Flaing squirrel ${this._nickname} flaes and has length wind span ${this.wingSpan}`);
+
+  flaing() {
+    console.log(
+      `Flaing squirrel ${this._nickname} flaes and has length wind span ${this.wingSpan}`
+    );
   }
 }
 
 const squirrel = new Squirrel("Bamby");
 console.log(squirrel);
-squirrel.eating('strawberry');
+squirrel.eating("strawberry");
 squirrel.runing();
 
-const flaingSquirrel = new FlaingSquirrel('Leyla',29)
+const flaingSquirrel = new FlaingSquirrel("Leyla", 29);
 console.log(flaingSquirrel);
 flaingSquirrel.eating();
 flaingSquirrel.runing();
 flaingSquirrel.flaing();
+//--------------------------------------------------------------------
+//Поліморфізм - можливість через однаковий інтерфейс працювати з різними типами
 
+//абстрактний клас - клас без реалізації
+class Figure {
+  constructor(name) {
+    this.name = name;
+  }
+  getArea() {
+    return null;
+  }
+}
+class Square extends Figure {
+  constructor(sideLength) {
+    super("square");
+    this.sideLength = sideLength;
+  }
+  getArea() {
+    return this.sideLength * this.sideLength;
+  }
+}
 
+class Rectangle extends Figure {
+  constructor(sideLength,sideWidth) {
+    super("rectangle");
+    this.sideLength = sideLength;
+    this.sideWidth = sideWidth;
+  }
+  getArea() {
+    return this.sideLength * this.sideWidth;
+  }
+}
 
+const square = new Square(6);
+console.log(square);
+console.log(square.getArea());
 
-//Поліморфізм -
+const rectangle = new Rectangle(10,5)
+console.log(rectangle);
+console.log(rectangle.getArea())
+
+function calcArea(fig){
+  if(fig instanceof Figure){
+    return fig.getArea()
+  }
+  console.log('fig is not a Figure');
+}
